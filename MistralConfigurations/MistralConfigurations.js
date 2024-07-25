@@ -1,9 +1,5 @@
 let ollama;
 
-(async () => {
-    ollama = (await import("ollama")).default;
-})();
-
 //The import is asynchronous, so you need to wait for it to complete before you can use the ollama object. You can do this by wrapping the import statement in an async function and calling it immediately.
 async function setupMistral() {
     try {
@@ -37,6 +33,7 @@ let chatConfig = {
             content: botContent,
         },
     ],
+    stream: true,
     // The temperature parameter controls the randomness of the response. A higher temperature
     //will result in more random and creative responses. while a lower value is more focused and deterministic.
     temperature: 0.5, // the default value is 0.7
@@ -44,8 +41,16 @@ let chatConfig = {
 
 const invokeMistral = async () => {
     try {
-        const response = await ollama.chat(chatConfig);
-        return response.message.content;
+        let response = await ollama.chat(chatConfig);
+        let output = "";
+
+        while (!response.done) {
+            response = await ollama.chat(chatConfig);
+            // output += response.message.content;
+            console.log(response.message);
+        }
+
+        return output;
     } catch (error) {
         console.error(error);
     }
