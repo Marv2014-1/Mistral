@@ -1,0 +1,28 @@
+Title: Attendance
+
+Solve a stabbing set problem on a dynamic set of intervals.
+
+Hints: 
+
+• fixed set of intervals: greedy
+	– stab at the earliest end-point
+	– sort by ends and solve in O(n)
+• dynamic set of intervals
+	– simulate the greedy process
+	– blocks of size sqrt(𝑛) (by ends)
+	– jump within a block
+• compute the end of the greedy process within a block for every start
+	– jump between blocks
+	– min end among those with sufficiently large start
+	– 𝑂(𝑛sqrt(𝑛)log (𝑛)), TLE
+• exploit known coordinates
+	– for every interval precompute the “next” (could be inactive) interval within each block
+	– enable/disable intervals, update suffix min query data
+	– 𝑂 (𝑛 sqrt(𝑛)) time and space, MLE
+• process queries (different times) “in parallel” from block to block
+	– final interval for each “time”
+	– sort intervals by starts within a block
+	– compute next intervals for current block
+		• recompute block on change
+		• suffix min data, final positions within block
+	– 𝑂 (𝑛(sqrt(𝑛))) time, 𝑂(𝑛)space 

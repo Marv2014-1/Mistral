@@ -44,10 +44,9 @@ const invokeMistral = async () => {
         let response = await ollama.chat(chatConfig);
         let output = "";
 
-        while (!response.done) {
-            response = await ollama.chat(chatConfig);
-            // output += response.message.content;
-            console.log(response.message);
+        for await (const chunk of response) {
+            output += chunk.message.content;
+            console.log(chunk);
         }
 
         return output;
