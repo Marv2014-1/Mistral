@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "nodemon": "^3.1.4",
+    "ollama": "^0.5.6"
+  },
+  "name": "mistral_config",
+  "version": "1.0.0",
+  "main": "MistralSetup.js",
+  "scripts": {
+    "start": "nodemon MistralStream.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

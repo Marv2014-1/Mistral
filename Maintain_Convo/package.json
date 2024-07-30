@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "nodemon": "^3.1.4",
+    "ollama": "^0.5.6"
+  },
+  "name": "setup",
+  "version": "1.0.0",
+  "main": "MistralSetup.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon convo.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
