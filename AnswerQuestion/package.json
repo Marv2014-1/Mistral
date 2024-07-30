@@ -1,0 +1,15 @@
+{
+    "dependencies": {
+        "nodemon": "^3.1.4",
+        "ollama": "^0.5.6"
+    },
+    "name": "readingdata",
+    "version": "1.0.0",
+    "main": "MistralWithData.js",
+    "scripts": {
+        "start": "nodemon questionWithHints.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
+}

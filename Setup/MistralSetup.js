@@ -1,10 +1,8 @@
-const { temperature, cons } = require("pos/lexicon");
-
 let ollama;
 
-// (async () => {
-//     ollama = (await import("ollama")).default;
-// })();
+(async () => {
+    ollama = (await import("ollama")).default;
+})();
 
 //The import is asynchronous, so you need to wait for it to complete before you can use the ollama object. You can do this by wrapping the import statement in an async function and calling it immediately.
 async function setupMistral() {
@@ -26,30 +24,28 @@ let botContent =
 
 // This is the configuration object for the chat model. It requires a model and messages
 let chatConfig = {
-    // replace "tinyllama" with Mistral later
-    model: "tinyllama",
+    model: "mistral",
     // The user role is the role of the user who is sending the message.
     // The system role is the role of the system that is sending the message.
     messages: [
         {
             role: "user",
-            content: "This is a default message. Do not reply.",
+            content: "This is a defult message. Do not reply.",
         },
         {
             role: "system",
             content: botContent,
         },
     ],
-    // temperature represents the level of creativity and randomness in the responses. The default value is 0.7. 
-    // (the higher the value, the more creative and random the responses)
-    temperature: 0.5,
+    // The temperature parameter controls the randomness of the response. A higher temperature
+    //will result in more random and creative responses. while a lower value is more focused and deterministic.
+    temperature: 0.5, // the default value is 0.7
 };
 
-// A Jason object is returned when the stream property is set to false.
 const invokeMistral = async () => {
     try {
         const response = await ollama.chat(chatConfig);
-        return response;
+        return response.message.content;
     } catch (error) {
         console.error(error);
     }
@@ -58,10 +54,7 @@ const invokeMistral = async () => {
 async function prompt(message) {
     chatConfig.messages[0].content = message;
     const output = await invokeMistral();
-    console.log(output.toString());
-    const seconds = output.total_duration/ (10**9);
-    console.log("Time in seconds: " + seconds);
+    console.log(output);
 }
 
 setupMistral();
-console.log("Hello, World!");

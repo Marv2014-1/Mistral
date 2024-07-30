@@ -1,0 +1,74 @@
+Title: Attendance
+
+Time limit: 8 s Memory limit: 128 MiB
+
+Body: 
+An ambitious university student has enrolled in just about every possible course. Unfortunately, 
+the courses require mandatory attendance. He has decided to visit the university
+campus where the lectures are held several times a day. He will join every lecture that is
+running at that moment, sign the attendance sheet, and immediately leave the campus
+due to other obligations. He will return later that day, when he will repeat this process to
+sign attendance sheets at other lectures and so on until his name is on attendance sheets
+of all lectures.
+As if this was not problematic enough, the student faces another obstacle: the schedule
+of the lectures keeps changing. Some lectures are added and some are canceled. The
+student has to keep adjusting his visiting schedule of the university to sign attendance
+sheets at all lectures.
+Write a program that will start with an empty schedule of lectures and read sequential
+modifications, which are either an addition or removal of a single lecture. For every
+modification, output the minimum number of visits that the student has to make to sign
+attendance sheets at all lectures that are currently on the schedule.
+
+Input data:
+The first line contains the number of modifications N, which are given in the following
+N lines. An addition of a lecture is described with two space-separated integers Ai and
+Bi
+, which represent a lecture that is running from Ai to Bi (including both bounds). The
+lectures are numbered as they are added, sequentially from 1 onwards. A negative number
+Xi represents a removal of lecture with the number −Xi
+.
+
+Input limits:
+• 1 ≤ N ≤ 300 000
+• 0 ≤ Ai ≤ Bi ≤ 109
+• Every number of the lecture for removal Xi will be valid – it will exist in the schedule
+at that moment.
+• Note the memory limit.
+
+Output data:
+For every modification output a single line with the minimum number of required visits
+for the current schedule of lectures.
+
+Example:
+Input
+12
+2 2
+17 26
+-2
+12 21
+0 0
+19 21
+16 22
+14 20
+15 19
+13 14
+-4
+13 17
+Output
+1
+2
+1
+2
+3
+3
+3
+3
+3
+4
+3
+3
+
+Comment:
+The first lecture to be added is [2, 2] and is given number 1. Next added lecture is [17, 26]
+with number 2. It is removed immediately afterwards, which is indicated by −2 in the
+input. The following added lecture is [12, 21], which is given number 3 and so on.
